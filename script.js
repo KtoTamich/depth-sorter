@@ -1,27 +1,12 @@
-import { getApi } from "https://unpkg.com/owlbear-api";
+import { useTokenStore } from "@owlbear-rodeo/sdk";
 
-const api = await getApi();
-console.log("Depth Sorter запущен");
+const tokenStore = useTokenStore();
 
-function computeZ(y) {
-  return Math.floor(y);
-}
-
-api.scene.onTokenChange(({ tokens }) => {
-  const updates = tokens.map(token => {
-    const newZ = computeZ(token.position.y);
-
-    if (token.zIndex !== newZ) {
-      return {
-        id: token.id,
-        zIndex: newZ
-      };
-    }
-
-    return null;
-  }).filter(Boolean);
-
-  if (updates.length > 0) {
-    api.scene.updateTokens(updates);
-  }
+tokenStore.onChange((tokens) => {
+  const sorted = [...tokens].sort((a, b) => a.y - b.y);
+  sorted.forEach((token, index) => {
+    tokenStore.update(token.id, {
+      zIndex: sorted.length - index
+    });
+  });
 });
