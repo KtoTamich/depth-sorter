@@ -3,5 +3,5 @@
   "name": "Depth Sorter",
   "version": "1.0.0",
   "icon": "icon.png",
-  "module": "index.js"
+  "module": "index.html"
 }
