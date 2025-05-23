@@ -1,7 +1,7 @@
 {
   "name": "Depth Sorter",
   "manifest_version": 1,
+  "version": "1.0.0",
   "icon": "icon.png",
-  "entry": "index.html",
-  "version": "1.0.0"
+  "entry": "index.html"
 }
