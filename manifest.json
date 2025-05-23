@@ -1,6 +1,6 @@
 {
   "name": "Z-Index Manual Control",
-  "version": "1.0.0",
+  "version": "Alpha 0.0.1",
   "manifest_version": 1,
   "action": {
     "title": "Z-Index Control",
