@@ -1,15 +1,21 @@
 import OBR from "@owlbear-rodeo/sdk";
 
 OBR.onReady(() => {
-  OBR.scene.items.onChange(async (items) => {
-    const tokens = items.filter(item => item.type === "image" && item.layer === "CHARACTER");
+  const input = document.getElementById("zInput");
+  const button = document.getElementById("applyBtn");
 
-    const sortedTokens = tokens.sort((a, b) => a.position.y - b.position.y);
+  button.addEventListener("click", async () => {
+    const items = await OBR.scene.items.getSelection();
+    const zIndex = parseInt(input.value);
 
-    const updates = sortedTokens.map((token, index) => ({
-      id: token.id,
-      zIndex: sortedTokens.length - index
-    }));
+    if (!Number.isInteger(zIndex) || zIndex < -10 || zIndex > 10) {
+      alert("Введите значение от -10 до 10");
+      return;
+    }
+
+    const updates = items
+      .filter(item => item.type === "image" && item.layer === "CHARACTER")
+      .map(item => ({ id: item.id, zIndex }));
 
     await OBR.scene.items.updateItems(updates);
   });
