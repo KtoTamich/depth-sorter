@@ -1,0 +1,7 @@
+{
+  "id": "com.example.depth-sorter",
+  "name": "Depth Sorter",
+  "icon": "icon.png",
+  "entry": "index.html",
+  "version": "1.0.0"
+}
