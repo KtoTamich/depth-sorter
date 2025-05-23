@@ -1,7 +1,7 @@
 {
-  "name": "Depth Sorter",
   "manifest_version": 1,
+  "name": "Depth Sorter",
   "version": "1.0.0",
   "icon": "icon.png",
-  "scripts": ["index.js"]
+  "module": "index.js"
 }
