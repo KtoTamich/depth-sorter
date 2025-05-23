@@ -1,12 +1,12 @@
 {
-  "name": "Depth Sorter",
-  "version": "Alpha: 1.0.1",
+  "name": "Z-Index Manual Control",
+  "version": "1.0.0",
   "manifest_version": 1,
   "action": {
-    "title": "Depth Sorter",
+    "title": "Z-Index Control",
     "icon": "/icon.png",
     "popover": "/",
-    "height": 400,
+    "height": 300,
     "width": 300
   }
 }
