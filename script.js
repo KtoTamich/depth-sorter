@@ -1,12 +1,16 @@
-import { useTokenStore } from "@owlbear-rodeo/sdk";
+import OBR from "@owlbear-rodeo/sdk";
 
-const tokenStore = useTokenStore();
+OBR.onReady(() => {
+  OBR.scene.items.onChange(async (items) => {
+    const tokens = items.filter(item => item.type === "image" && item.layer === "CHARACTER");
 
-tokenStore.onChange((tokens) => {
-  const sorted = [...tokens].sort((a, b) => a.y - b.y);
-  sorted.forEach((token, index) => {
-    tokenStore.update(token.id, {
-      zIndex: sorted.length - index
-    });
+    const sortedTokens = tokens.sort((a, b) => a.position.y - b.position.y);
+
+    const updates = sortedTokens.map((token, index) => ({
+      id: token.id,
+      zIndex: sortedTokens.length - index
+    }));
+
+    await OBR.scene.items.updateItems(updates);
   });
 });
