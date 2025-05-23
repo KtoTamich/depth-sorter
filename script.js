@@ -5,17 +5,25 @@ OBR.onReady(() => {
   const button = document.getElementById("applyBtn");
 
   button.addEventListener("click", async () => {
-    const items = await OBR.scene.items.getSelection();
-    const zIndex = parseInt(input.value);
-
-    if (!Number.isInteger(zIndex) || zIndex < -10 || zIndex > 10) {
-      alert("Введите значение от -10 до 10");
+    const z = parseInt(input.value);
+    if (z < -10 || z > 10) {
+      alert("Значение должно быть от -10 до 10");
       return;
     }
 
-    const updates = items
-      .filter(item => item.type === "image" && item.layer === "CHARACTER")
-      .map(item => ({ id: item.id, zIndex }));
+    const selection = await OBR.scene.items.getSelection();
+
+    const updates = selection
+      .filter((item) => item.type === "image" && item.layer === "CHARACTER")
+      .map((item) => ({
+        id: item.id,
+        zIndex: z
+      }));
+
+    if (updates.length === 0) {
+      alert("Выберите токен из секции 'Character'");
+      return;
+    }
 
     await OBR.scene.items.updateItems(updates);
   });
