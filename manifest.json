@@ -5,8 +5,8 @@
   "action": {
     "title": "Z-Index Control",
     "icon": "/icon.png",
-    "popover": "/",
-    "height": 300,
+    "popover": "/index.html",
+    "height": 200,
     "width": 300
   }
 }
