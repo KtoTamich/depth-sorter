@@ -1,6 +1,6 @@
 {
   "name": "Depth Sorter",
-  "version": "1.0.0",
+  "version": "Alpha: 1.0.1",
   "manifest_version": 1,
   "action": {
     "title": "Depth Sorter",
